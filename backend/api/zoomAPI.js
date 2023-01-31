@@ -1,7 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
 const btoa = require("btoa");
-const asyncHandler = require("express-async-handler");
 
 const getAccessToken = async () => {
   try {
@@ -51,20 +50,17 @@ const listZoomMeetings = async () => {
   }
 };
 
-const createZoomMeeting = async (topic, start_time) => {
+const createZoomMeeting = async (type) => {
   try {
-    console.log("Start Time in Create Meeting: ", start_time);
+    
 
     const data = JSON.stringify({
-      topic: topic,
-      start_time: start_time,
-      join_before_host: true,
-      password: generateOTP(),
+      type: type,
     });
 
     const resp = await axios({
       method: "post",
-      url: "https://api.zoom.us/v2/users/donte.zoomie@gmail.com/meetings",
+      url: "https://api.zoom.us/v2/users/me/meetings",
       headers: {
         Authorization: "Bearer " + `${await getAccessToken()} `,
         "Content-Type": "application/json",

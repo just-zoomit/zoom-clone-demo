@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 import { DangerBlueButton } from "../Buttons/buttonComposition";
 
 
@@ -16,6 +17,7 @@ export function InstantMeeting(props) {
   });
   const { topic, name, email, role } = state;
 
+  
   const prevDateTimeValue = React.useRef("");
 
   const [, setData] = useState(null);
@@ -29,11 +31,7 @@ export function InstantMeeting(props) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          topic: topic,
-          first_name: name,
-          email: email,
-          role: role,
-          start_time: prevDateTimeValue.current,
+         type:1,
         }),
       };
 

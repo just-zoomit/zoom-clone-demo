@@ -39,13 +39,13 @@ const {
   });
 
 const CreateAppointment = asyncHandler(async (req, res) => {
-  const { topic, start_time, role } = req.body;
+  const { type} = req.body;
 
-  if (!topic || !start_time || !role) {
+  if (!type) {
     res.status(400);
     throw new Error("Please Fill all the fields");
   } else {
-    const { id, password } = await createZoomMeeting(topic, start_time, role);
+    const { id, password } = await createZoomMeeting(type);
 
     res.status(201).json({ id, password });
   }

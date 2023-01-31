@@ -35,7 +35,7 @@ function Home() {
             onClearData={handleClearData}
           />
         </div>
-        &nbsp; &nbsp;
+     
         <div style={{ margin: "auto" }}>{dataFetched ? <Table /> : null}</div>
       </div>
     </>

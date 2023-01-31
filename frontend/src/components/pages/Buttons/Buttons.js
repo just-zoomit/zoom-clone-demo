@@ -47,33 +47,7 @@ export default function Buttons(props) {
       console.error(error);
     }
   };
-
-  const handleClearData = () => {
-    props.onClearData();
-  };
-
-  const [isData, setIsData] = useState(false);
-
-  // Switch button to show list meeting
-  const handleListClick = () => {
-    setIsData(!isData);
-  };
-
-  let button;
-
-  if (isData) {
-    button = (
-      <BigSuccessButton
-        text="clear_all"
-        onClick={handleClearData}
-        label="Clear Data"
-      />
-    );
-  } else {
-    button = (
-      <BigSuccessButton text="list" onClick={handleClick} label="List" />
-    );
-  }
+  
 
   return (
     <>
@@ -82,12 +56,7 @@ export default function Buttons(props) {
           <InstantMeeting onDataReceived={handleDataReceived} />
         
           <BigSuccessButton text="list" onClick={handleClick} label="List" />
-          {/* Ex. clear Table data switch */}
-          <BigSuccessButton
-            text="clear_all"
-            onClick={handleClearData}
-            label="Clear Data"
-          />
+          
         </DivContainer>
       </div>
     </>
