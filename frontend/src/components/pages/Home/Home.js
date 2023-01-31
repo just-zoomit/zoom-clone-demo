@@ -19,7 +19,16 @@ function Home() {
 
   return (
     <>
-      <div style={{ display: "flex", margin: "auto" }}>
+      <div
+        style={{
+          display: "flex",
+          margin: "auto",
+          flexDirection: "row",
+          height: "100vh",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <div style={{ margin: "auto" }}>
           <Buttons
             onDataReceived={handleDataReceived}
@@ -27,7 +36,7 @@ function Home() {
           />
         </div>
         &nbsp; &nbsp;
-        <div>{dataFetched ? <Table /> : null}</div>
+        <div style={{ margin: "auto" }}>{dataFetched ? <Table /> : null}</div>
       </div>
     </>
   );

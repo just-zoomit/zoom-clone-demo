@@ -4,7 +4,11 @@ import "../Dialogs/styles.css";
 // Convert to styled component
 export const Button = ({ size, color, text, label, ...props }) => {
   return (
-    <div>
+    <div style={{ 
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "center" 
+    }}>
       <button
         className="bn37"
         style={{
@@ -25,10 +29,7 @@ export const Button = ({ size, color, text, label, ...props }) => {
       >
         <i class="material-icons large icon-blue md40px"> {text} </i>
       </button>
-      <p  style={{
-          alignItems: "center",
-          
-        }}> {label}</p>
+      <p > {label}</p>
     </div>
   );
 };
