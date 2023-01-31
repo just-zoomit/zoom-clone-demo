@@ -4,6 +4,7 @@ require("dotenv").config();
 const KJUR = require("jsrsasign");
 
 const {
+  createZoomMeeting,
   listZoomMeetings,
   thridPartyAPICall,
   } = require("../api/zoomAPI.js");
@@ -36,6 +37,19 @@ const {
       signature: signature,
     });
   });
+
+const CreateAppointment = asyncHandler(async (req, res) => {
+  const { topic, start_time, role } = req.body;
+
+  if (!topic || !start_time || !role) {
+    res.status(400);
+    throw new Error("Please Fill all the fields");
+  } else {
+    const { id, password } = await createZoomMeeting(topic, start_time, role);
+
+    res.status(201).json({ id, password });
+  }
+});
   
 
   const ListMeeting = asyncHandler(async (req, res) => {
@@ -62,6 +76,7 @@ const ThridPartyAPICall = asyncHandler(async (req, res) => {
 
   module.exports = {
     getMsdkSignature,
+    CreateAppointment,
     ListMeeting,
     ThridPartyAPICall,
   };

@@ -51,6 +51,36 @@ const listZoomMeetings = async () => {
   }
 };
 
+const createZoomMeeting = async (topic, start_time) => {
+  try {
+    console.log("Start Time in Create Meeting: ", start_time);
+
+    const data = JSON.stringify({
+      topic: topic,
+      start_time: start_time,
+      join_before_host: true,
+      password: generateOTP(),
+    });
+
+    const resp = await axios({
+      method: "post",
+      url: "https://api.zoom.us/v2/users/donte.zoomie@gmail.com/meetings",
+      headers: {
+        Authorization: "Bearer " + `${await getAccessToken()} `,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    });
+
+    const { id, password } = resp.data;
+
+    return { id, password };
+  } catch (err) {
+    if (err.status == undefined) {
+      console.log("Error : ", err);
+    }
+  }
+};
 
 const thridPartyAPICall = () => {
   try {
@@ -63,8 +93,18 @@ const thridPartyAPICall = () => {
   }
 };
 
+function generateOTP() {
+  var digits = "0123456789";
+  let OTP = "";
+  for (let i = 0; i < 6; i++) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+}
+
 module.exports = {
   getAccessToken, // Not needed outside of file
+  createZoomMeeting, 
   listZoomMeetings,
   thridPartyAPICall,
 };
