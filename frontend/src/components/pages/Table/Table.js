@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import DataTable from "react-data-table-component";
 
@@ -6,7 +6,6 @@ import { useResource } from "../hooks/useResource";
 
 import { TableContainer } from "./TableComponents";
 
-import moment from "moment";
 import { element } from "./dateTime";
 
 const customStyles = {
@@ -30,14 +29,14 @@ const customStyles = {
 };
 
 export default function Table() {
-  const [formData, setFormData] = useState({});
-
+ 
   const listmeetings = useResource("api/zoom/listmeetings");
   console.log("listmeetings", listmeetings.resources);
   const newData = listmeetings?.resources?.meetings?.map((item) => ({
     keyField: item.id,
     topic: item.topic,
   }));
+
 
   const columns = [
     {
@@ -64,8 +63,6 @@ export default function Table() {
     },
   ];
 
-  // Meeting Data
-  formData.start_time = moment(formData.start_time).format("YYYY-MM-DD HH:mm");
 
   return (
     <div style={{ maxWidth: "100vw", overflowX: "scroll" }}>

@@ -1,16 +1,17 @@
-import "../Dialogs/styles.css";
+import { HoverButton} from "../Table/TableComponents";
 
 // Adpoted Component Composition pattern, parent component of GenericPopModal
 // Convert to styled component
 export const Button = ({ size, color, text, label, ...props }) => {
   return (
-    <div style={{ 
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center" 
-    }}>
-      <button
-        className="bn37"
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <HoverButton
         style={{
           padding: "0",
           frontSize: size === "large" ? "32px" : "16px",
@@ -27,18 +28,18 @@ export const Button = ({ size, color, text, label, ...props }) => {
         }}
         {...props}
       >
-        <i class="material-icons large icon-blue md40px"> {text} </i>
-      </button>
-      <p > {label}</p>
+        <span style={{fontSize: "55px" }} class="material-icons md-55"> {text} </span>
+      </HoverButton>
+
+      <p> {label}</p>
     </div>
   );
 };
 
-
-export const DangerBlueButton = (props) => {
+export const OrangeButton = (props) => {
   return <Button {...props} color="#faa92f" />;
 };
 
-export const BigSuccessButton = (props) => {
+export const BlueButton = (props) => {
   return <Button {...props} color="#316efd" size="large" />;
 };

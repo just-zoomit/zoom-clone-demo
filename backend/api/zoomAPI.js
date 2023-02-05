@@ -2,7 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const btoa = require("btoa");
 
-const getAccessToken = async () => {
+const getZoomAPIAccessToken = async () => {
   try {
     base_64 = btoa(process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET);
 
@@ -23,13 +23,14 @@ const getAccessToken = async () => {
   }
 };
 
+
 const listZoomMeetings = async () => {
   try {
     const resp = await axios({
       method: "get",
       url: "https://api.zoom.us/v2/users/donte.zoomie@gmail.com/meetings",
       headers: {
-        Authorization: "Bearer " + `${await getAccessToken()} `,
+        Authorization: "Bearer " + `${await getZoomAPIAccessToken()} `,
         "Content-Type": "application/json",
       },
     });
@@ -62,7 +63,7 @@ const createZoomMeeting = async (type) => {
       method: "post",
       url: "https://api.zoom.us/v2/users/me/meetings",
       headers: {
-        Authorization: "Bearer " + `${await getAccessToken()} `,
+        Authorization: "Bearer " + `${await getZoomAPIAccessToken()} `,
         "Content-Type": "application/json",
       },
       data: data,
@@ -78,11 +79,27 @@ const createZoomMeeting = async (type) => {
   }
 };
 
-const thridPartyAPICall = () => {
+/**
+ * Generic function for making requests to the Zoom API
+ * @param {string} method - Request method
+ * @param {string | URL} endpoint - Zoom API Endpoint
+ * @param {string} token - Access Token
+ * @param {object} [data=null] - Request data
+ */
+
+const makeZoomAPIRequest = async (method, endpoint, token, data = null) => {
   try {
-    
-      // Make API Call Here 
-    return "Thrid Party API Call";
+    const resp = await axios({
+      method: method,
+      url: endpoint,
+      headers: {
+        Authorization: "Bearer " + `${token} `,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    });
+
+    return resp.data;
   } catch (err) {
     // Handle Error Here
     console.error(err);
@@ -98,9 +115,22 @@ function generateOTP() {
   return OTP;
 }
 
+
+const thirdPartyAPICall = () => {
+  try {
+    
+      // Make API Call Here 
+    return "Third Party API Call";
+  } catch (err) {
+    // Handle Error Here
+    console.error(err);
+  }
+};
+
+
 module.exports = {
-  getAccessToken, // Not needed outside of file
+  getZoomAPIAccessToken, // Not needed outside of file
   createZoomMeeting, 
   listZoomMeetings,
-  thridPartyAPICall,
+  thirdPartyAPICall,
 };

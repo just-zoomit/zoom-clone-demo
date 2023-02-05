@@ -3,18 +3,19 @@ import Buttons from "../Buttons/Buttons";
 import Table from "../Table/Table";
 
 function Home() {
-  const [, setData] = useState([]);
   const [dataFetched, setDataFetched] = useState(false);
 
+  // Set data received from child component table switch button
   const handleDataReceived = (newData) => {
-    console.log("Data received in Home.js", newData);
-    setData(newData);
-    setDataFetched(true);
+    console.log(" Handle Data received in Home.js", newData);
+    setDataFetched(newData);
   };
-
-  const handleClearData = () => {
-    setData([]);
-    setDataFetched(false);
+  // Not used
+  const handleClearData = (newData) => {
+    console.log("Clear Data in Home.js", newData);
+    if (newData) {
+      setDataFetched(false);
+    }
   };
 
   return (
@@ -30,13 +31,18 @@ function Home() {
         }}
       >
         <div style={{ margin: "auto" }}>
+          {" "}
           <Buttons
             onDataReceived={handleDataReceived}
             onClearData={handleClearData}
           />
         </div>
-     
-        <div style={{ margin: "auto" }}>{dataFetched ? <Table /> : null}</div>
+
+        <div style={{ margin: "auto" }}> 
+        {" "}
+        {dataFetched ? <Table /> :  null } 
+        </div>
+
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 const CenterDiv = styled.div`
 display: "flex";
 flexDirection: "column";
@@ -15,4 +14,24 @@ height: auto;
 background-color:#ffffff;
 `;
 
-export { TableContainer,  CenterDiv  }
+
+
+const HoverButton = styled.button`
+  transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+  box-shadow: 0px 15px 20px rgba(81, 83, 82, 0.4);
+
+  &:hover {
+    transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
+  }
+
+  &:disabled {
+    background: grey;
+    cursor: not-allowed;
+  }
+`;
+
+const Md40px = styled.span`
+  font-size: 48px;
+`;
+
+export { TableContainer, CenterDiv, HoverButton, Md40px }
