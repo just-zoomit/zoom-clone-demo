@@ -32,8 +32,6 @@ const customStyles = {
 // Adopted controlled component pattern
 export default function Table({shouldFetch, onRequestClearData}) {
   
-
-
   const listmeetings = useResource("api/zoom/listmeetings");
   const newData = listmeetings?.resources?.meetings?.map((item) => ({
     keyField: item.id,
@@ -42,10 +40,7 @@ export default function Table({shouldFetch, onRequestClearData}) {
 
   const handleDelete = (e) => {
     console.log("handleDelete", e);
-    alert(`Are you sure you want to delete meeting ${e}`);
-    // const deleteMeeting = useResource("api/zoom/deletemeeting");
-    // deleteMeeting.deleteResource(e.target.value);
-    // onRequestClearData();
+    alert(`Are you sure you want to delete meeting ${e} ?`);
   };
 
 

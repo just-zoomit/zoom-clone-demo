@@ -3,7 +3,7 @@ const router = express.Router();
 const {
     generateSDKSignature,
     CreateAppointment,
-    ListMeeting,
+    ListAppointments,
     ThirdPartyAPICall,
   } = require("../controllers/zoomControllers.js");
 
@@ -16,7 +16,7 @@ router.route("/msig").post(generateSDKSignature);
 router.route("/create").post(CreateAppointment);
 
 // Create routes Test with Postman
-router.route("/listmeetings").get(ListMeeting);
+router.route("/listmeetings").get(ListAppointments);
 
 // Get routes Test with Postman
 router.route("/thridparty").get(ThirdPartyAPICall);

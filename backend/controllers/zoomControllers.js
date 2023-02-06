@@ -53,7 +53,7 @@ const CreateAppointment = asyncHandler(async (req, res) => {
 });
   
 
-  const ListMeeting = asyncHandler(async (req, res) => {
+  const ListAppointments = asyncHandler(async (req, res) => {
     const meetings = await listZoomMeetings();
 
     if (meetings === undefined) {
@@ -79,7 +79,7 @@ const ThirdPartyAPICall = asyncHandler(async (req, res) => {
   module.exports = {
     generateSDKSignature,
     CreateAppointment,
-    ListMeeting,
+    ListAppointments,
     ThirdPartyAPICall,
   };
   

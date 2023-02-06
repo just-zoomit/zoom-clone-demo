@@ -15,7 +15,6 @@ background-color:#ffffff;
 `;
 
 
-
 const HoverButton = styled.button`
   transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
   box-shadow: 0px 15px 20px rgba(81, 83, 82, 0.4);
@@ -30,8 +29,5 @@ const HoverButton = styled.button`
   }
 `;
 
-const Md40px = styled.span`
-  font-size: 48px;
-`;
 
-export { TableContainer, CenterDiv, HoverButton, Md40px }
+export { TableContainer, CenterDiv, HoverButton }
