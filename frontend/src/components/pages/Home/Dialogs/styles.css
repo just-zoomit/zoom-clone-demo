@@ -23,6 +23,11 @@
     position: relative;
     animation: animate 0.3s;
   }
+
+  .modal input {
+    border-radius: 8px;
+  }
+
   .modal button {
     position: relative;
     bottom: 0px;
@@ -34,7 +39,7 @@
     font-weight: bold;
     border: none;
     outline: none;
-    border-radius: 2px;
+    border-radius: 12px;
     cursor: pointer;
     float : left;
     margin-right: 7px;

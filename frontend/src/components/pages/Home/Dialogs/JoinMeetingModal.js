@@ -15,7 +15,7 @@ export const JoinMeetingModal = ({ setShowModal }) => {
     }
   };
 
-  const [state, setState] = useState({ role: 1 });
+  const [state, ] = useState({ role: 1 });
   const { role } = state;
   const id = useRef();
   const password = useRef();
@@ -86,7 +86,6 @@ export const JoinMeetingModal = ({ setShowModal }) => {
                 {role === 1 ? "Join Meeting" : "Start Meeting"}
               </button>
 
-              
             </div>
 
           </form>
