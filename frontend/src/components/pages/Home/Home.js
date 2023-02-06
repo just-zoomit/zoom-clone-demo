@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Buttons from "./Buttons/ButtonsContainer";
+import ButtonsContainer from "./Buttons/ButtonsContainer";
 
 import Table from "./Table/Table";
 
@@ -12,7 +12,6 @@ function Home() {
     setDataFetched(newData);
   };
 
- 
 
   return (
     <>
@@ -28,7 +27,7 @@ function Home() {
       >
         <div style={{ margin: "auto" }}>
           {" "}
-          <Buttons onDataReceived={handleDataReceived} />
+          <ButtonsContainer onDataReceived={handleDataReceived} />
         </div>
 
         <div style={{ margin: "auto" }}> 

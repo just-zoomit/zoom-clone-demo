@@ -40,6 +40,14 @@ export default function Table({shouldFetch, onRequestClearData}) {
     topic: item.topic,
   }));
 
+  const handleDelete = (e) => {
+    console.log("handleDelete", e);
+    alert(`Are you sure you want to delete meeting ${e}`);
+    // const deleteMeeting = useResource("api/zoom/deletemeeting");
+    // deleteMeeting.deleteResource(e.target.value);
+    // onRequestClearData();
+  };
+
 
   const columns = [
     {
@@ -56,8 +64,8 @@ export default function Table({shouldFetch, onRequestClearData}) {
       selector: (row) =>
         row.keyField ? (
           <div>
-            <button value={row.keyField} onClick={() => row.keyField}>
-              <i class="material-icons large icon-blue"> edit </i>
+            <button value={row.keyField} onClick={() => handleDelete(row.keyField)}>
+              <i class="material-icons large icon-blue"> delete_forever </i>
             </button>
           </div>
         ) : (

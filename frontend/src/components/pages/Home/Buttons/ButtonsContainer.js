@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { BlueButton as ListMeetingsButton } from "./buttonComposition";
-
 import { BlueButton as JoinMeetingButton } from "./buttonComposition";
 
 import { NewMeetingButton } from "../Buttons/InstantMeetingButton";
-
 import { JoinMeetingModal } from "../Dialogs/JoinMeetingModal";
 
 // Adpoted Component Composition pattern
@@ -20,7 +18,7 @@ const DivContainer = styled.div`
   flex-direction: row | row-reverse | column | column-reverse;
 `;
 
-export default function Buttons(props) {
+export default function ButtonsContainer(props) {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
