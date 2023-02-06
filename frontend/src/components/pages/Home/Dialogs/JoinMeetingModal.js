@@ -40,8 +40,6 @@ export const JoinMeetingModal = ({ setShowModal }) => {
   return ReactDom.createPortal(
     <div className="container" ref={modalRef} onClick={closeModal}>
       <div className="modal">
-        <button onClick={() => setShowModal(false)}>X</button>
-
         <div>
           <h2>Join Meeting</h2>
 
@@ -66,18 +64,31 @@ export const JoinMeetingModal = ({ setShowModal }) => {
               />
             </div>
             <hr class="solid"></hr>
-            <div
-              style={{
-                position: "relative",
-                bottom: "0",
-                right: "0",
-                width: "300px",
-              }}
-            >
-              <button type="submit" style={{ background: "#316efd" }}>
+            <div>
+            
+              <button
+                type="submit"
+                style={{
+                  background: "#808080",
+                
+                }}
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+
+              &nbsp; &nbsp;
+
+              <button
+                type="submit"
+                style={{ background: "#316efd" }}
+              >
                 {role === 1 ? "Join Meeting" : "Start Meeting"}
               </button>
+
+              
             </div>
+
           </form>
         </div>
       </div>
