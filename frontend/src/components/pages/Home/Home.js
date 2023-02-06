@@ -12,13 +12,7 @@ function Home() {
     setDataFetched(newData);
   };
 
-  // Not used
-  const handleClearData = (newData) => {
-    console.log("Clear Data in Home.js", newData);
-    if (newData) {
-      setDataFetched(false);
-    }
-  };
+ 
 
   return (
     <>
@@ -34,15 +28,13 @@ function Home() {
       >
         <div style={{ margin: "auto" }}>
           {" "}
-          <Buttons
-            onDataReceived={handleDataReceived}
-            onClearData={handleClearData}
-          />
+          <Buttons onDataReceived={handleDataReceived} />
         </div>
 
         <div style={{ margin: "auto" }}> 
         {" "}
-        {dataFetched ? <Table /> :  null } 
+        
+        <Table shouldFetch={dataFetched} onRequestClearData={ ()=> setDataFetched(false)} /> 
         </div>
 
       </div>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { BlueButton as ListMeetingsButton } from "./buttonComposition";
 
-import { BlueButton as JoinButton } from "./buttonComposition";
+import { BlueButton as JoinMeetingButton } from "./buttonComposition";
 
 import { NewMeetingButton } from "../Buttons/InstantMeetingButton";
 
@@ -39,21 +39,18 @@ export default function Buttons(props) {
 
   return (
     <>
-      <div>
+      
         <DivContainer>
           <NewMeetingButton />
 
-          <ListMeetingsButton
-            text="list"
-            label="List"
-            onClick={handleListMeetingsClick}
-          />
+          <ListMeetingsButton text="list" label="List" onClick={handleListMeetingsClick} />
 
-          <JoinButton text="add" label="Join" onClick={openModal} />
+          <JoinMeetingButton text="add" label="Join" onClick={openModal} />
 
           {showModal ? <JoinMeetingModal setShowModal={setShowModal} /> : null}
+
         </DivContainer>
-      </div>
+   
     </>
   );
 }

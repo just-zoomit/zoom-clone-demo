@@ -40,9 +40,8 @@ export const JoinMeetingModal = ({ setShowModal }) => {
   return ReactDom.createPortal(
     <div className="container" ref={modalRef} onClick={closeModal}>
       <div className="modal">
+      <h2>Join Meeting</h2>
         <div>
-          <h2>Join Meeting</h2>
-
           <form onSubmit={handleSubmit}>
             <div>
               <input

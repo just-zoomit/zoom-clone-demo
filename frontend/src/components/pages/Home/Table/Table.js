@@ -28,9 +28,13 @@ const customStyles = {
   },
 };
 
-export default function Table() {
+
+// Adopted controlled component pattern
+export default function Table({shouldFetch, onRequestClearData}) {
+  
+
+
   const listmeetings = useResource("api/zoom/listmeetings");
-  console.log("listmeetings", listmeetings.resources);
   const newData = listmeetings?.resources?.meetings?.map((item) => ({
     keyField: item.id,
     topic: item.topic,
@@ -70,7 +74,7 @@ export default function Table() {
           <DataTable
             title={element}
             columns={columns}
-            data={newData}
+            data={shouldFetch ? newData : []}
             // progressPending={loading}
             customStyles={customStyles}
             pagination
