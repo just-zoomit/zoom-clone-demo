@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Buttons from "../Buttons/Buttons";
-import Table from "../Table/Table";
+import Buttons from "./Buttons/ButtonsContainer";
+
+import Table from "./Table/Table";
 
 function Home() {
   const [dataFetched, setDataFetched] = useState(false);
@@ -10,6 +11,7 @@ function Home() {
     console.log(" Handle Data received in Home.js", newData);
     setDataFetched(newData);
   };
+
   // Not used
   const handleClearData = (newData) => {
     console.log("Clear Data in Home.js", newData);

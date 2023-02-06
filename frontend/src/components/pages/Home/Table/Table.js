@@ -2,7 +2,7 @@ import React from "react";
 
 import DataTable from "react-data-table-component";
 
-import { useResource } from "../hooks/useResource";
+import { useResource } from "../../../hooks/useResource";
 
 import { TableContainer } from "./TableComponents";
 
@@ -29,7 +29,6 @@ const customStyles = {
 };
 
 export default function Table() {
- 
   const listmeetings = useResource("api/zoom/listmeetings");
   console.log("listmeetings", listmeetings.resources);
   const newData = listmeetings?.resources?.meetings?.map((item) => ({
@@ -54,7 +53,7 @@ export default function Table() {
         row.keyField ? (
           <div>
             <button value={row.keyField} onClick={() => row.keyField}>
-              <i class="material-icons large icon-blue md34px"> edit </i>
+              <i class="material-icons large icon-blue"> edit </i>
             </button>
           </div>
         ) : (

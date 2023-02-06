@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { BlueButton as ListMeetingsButton } from "./buttonComposition";
 
-import { NewMeetingButton } from "../Dialogs/InstantMeetingModal";
+import { NewMeetingButton } from "../Buttons/InstantMeetingButton";
 
 // Adpoted Component Composition pattern
 const DivContainer = styled.div`
