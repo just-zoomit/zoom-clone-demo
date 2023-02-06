@@ -1,51 +1,90 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactDom from "react-dom";
 
-import { OrangeButton as InstantMeetingButton } from "../Buttons/buttonComposition";
+import "./styles.css";
 
 // Adpoted Component Composition pattern and pass data from child to parent pattern
 
-export function NewMeetingButton() {
+export const JoinMeetingModal = ({ setShowModal }) => {
+  const modalRef = useRef();
+
+  const closeModal = (e) => {
+    if (e.target === modalRef.current) {
+      setShowModal(false);
+    }
+  };
+
+  const [state, setState] = useState({ role: 1 });
+  const { role } = state;
+  const id = useRef();
+  const password = useRef();
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     try {
-      const POST_OPTIONS = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: 1,
-        }),
-      };
-
-      const response = await fetch("/api/zoom/create", POST_OPTIONS);
-      const json = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      if (json.id && json.password) {
-        navigate(`/msdk/?mn=${json.id}&pw=${json.password}`);
+      if (id.current.value === "" || password.current.value === "") {
+        alert("Please enter a valid meeting ID and password");
       } else {
-        console.log("Error: No data received");
+        console.log("id", id.current.value);
+        setShowModal(false);
+        navigate(`/msdk/?mn=${id.current.value}&pw=${password.current.value}`);
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <InstantMeetingButton
-          type="submit"
-          text="videocam"
-          label="New Meeting"
-        />
-      </form>
-    </div>
+  // render the modal JSX in the portal div.
+  return ReactDom.createPortal(
+    <div className="container" ref={modalRef} onClick={closeModal}>
+      <div className="modal">
+       
+        <button onClick={() => setShowModal(false)}>X</button>
+
+        <div>
+        <h2>Join Meeting</h2>
+
+          <form onSubmit={handleSubmit}>
+            <div>
+            
+              <input
+                type="text"
+                id="topic"
+                placeholder="Meeting ID"
+                ref={id}
+                required={true}
+              />
+              
+            </div>
+            &nbsp; &nbsp;
+            <div>
+            
+              <input
+                type="text"
+                id="topic"
+                placeholder="Meeting Password"
+                ref={password}
+                required={true}
+              />
+            
+            </div>
+            <hr class="solid"></hr>
+
+            <div style={{ position: "relative", marginTop:"auto", display: "flex" , justifyContent: "space-between"}} >
+              
+              <button type="submit" style={{ background:"#316efd" }}>
+              {role === 1 ? "Join Meeting" : "Start Meeting"}
+            </button>
+
+          </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>,
+    document.getElementById("portal")
   );
-}
+};

@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 import { BlueButton as ListMeetingsButton } from "./buttonComposition";
 
+import { BlueButton as JoinButton } from "./buttonComposition";
+
 import { NewMeetingButton } from "../Buttons/InstantMeetingButton";
+
+import { JoinMeetingModal } from "../Dialogs/JoinMeetingModal";
 
 // Adpoted Component Composition pattern
 const DivContainer = styled.div`
@@ -17,6 +21,12 @@ const DivContainer = styled.div`
 `;
 
 export default function Buttons(props) {
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
   
   // Handle data received from child component table switch button
   const handleListMeetingsClick = (event) => {
@@ -34,9 +44,15 @@ export default function Buttons(props) {
       <div>
         <DivContainer>
         
-          <NewMeetingButton  />
 
-          <ListMeetingsButton text="list" onClick={handleListMeetingsClick} label="List" />
+          <NewMeetingButton   />
+         
+
+          <ListMeetingsButton text="list" label="List" onClick={handleListMeetingsClick}  />
+
+          <JoinButton text="add" label="Join" onClick={openModal} />
+
+          {showModal ? <JoinMeetingModal setShowModal={setShowModal} /> : null}
 
         </DivContainer>
       </div>
